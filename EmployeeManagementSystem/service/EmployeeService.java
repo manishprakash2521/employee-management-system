@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class EmployeeService implements EmployeeServiceImp{
@@ -34,4 +36,15 @@ public class EmployeeService implements EmployeeServiceImp{
         return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
+    public  List<EmployeeDto> getAllEmployee(){
+
+        List<Employee> allEmployee=employeeRepository.findAll();
+        return allEmployee.stream().map(EmployeeMapper::mapToEmployeeDto).toList();
+    }
+
+    public EmployeeDto getEmployeeSalary(Long id) {
+
+        Employee employeeSalary=employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not exists with given id" + id));
+        return EmployeeMapper.mapToEmployeeDto(employeeSalary);
+    }
 }
