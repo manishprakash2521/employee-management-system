@@ -14,6 +14,7 @@ A Spring Boot based Employee Management System that provides REST APIs for manag
 - Update Employee
 - Delete Employee
 - Get Employee Details
+- Get Employee Salary
 - REST APIs
  
 ## Project Structure
